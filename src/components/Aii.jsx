@@ -31,10 +31,10 @@ const Aii = () => {
 
       // Save prompt and response to your backend
       await axios.post(
-        "http://localhost:4000/api/v1/ai/save-search-history",
+        "https://careplus-bakend-production.up.railway.app/api/v1/ai/save-search-history",
         {
           prompt,
-          response: response?.data?.generatedText
+          response: response?.data?.generatedText,
         },
         {
           headers: { "Content-Type": "application/json" },
@@ -61,7 +61,7 @@ const Aii = () => {
       ) : (
         <>
           <h4>Response:</h4>
-          {assistantResponse.split('\n').map((line, index) => (
+          {assistantResponse.split("\n").map((line, index) => (
             <p key={index}>{line}</p>
           ))}
         </>
@@ -71,9 +71,6 @@ const Aii = () => {
 };
 
 export default Aii;
-
-
-
 
 // import React, { useState, useEffect } from "react";
 // import axios from "axios";

@@ -11,9 +11,12 @@ const Navbar = () => {
 
   const handleLogout = async () => {
     await axios
-      .get("http://localhost:4000/api/v1/user/patient/logout", {
-        withCredentials: true,
-      })
+      .get(
+        "https://careplus-bakend-production.up.railway.app/api/v1/user/patient/logout",
+        {
+          withCredentials: true,
+        }
+      )
       .then((res) => {
         toast.success(res.data.message);
         setIsAuthenticated(false);
@@ -49,7 +52,9 @@ const Navbar = () => {
             <Link to={"/Askwithai"} onClick={() => setShow(!show)}>
               AI
             </Link>
-            <li><a href="http://localhost:5174">Dashboard</a></li>
+            <li>
+              <a href="http://localhost:5174">Dashboard</a>
+            </li>
           </div>
           {isAuthenticated ? (
             <button className="logoutBtn btn" onClick={handleLogout}>
