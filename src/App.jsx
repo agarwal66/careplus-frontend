@@ -1,16 +1,19 @@
 import React, { useContext, useEffect } from "react";
 import "./App.css";
-// import "./Promptcomponent.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Appointment from "./pages/Appointment";
 import AboutUs from "./pages/AboutUs";
 import Register from "./pages/Register";
 import Footer from "./components/Footer";
+<<<<<<< HEAD
 import Navbar from "./components/Navbar";
 // import Ai from "./pages/Ai"
 // import Aii from "./components/Aii";
 import Chatbot from "./pages/chat";
+=======
+import Navbar from "./components/Navbar"; // Proper Navbar import
+>>>>>>> 3f5acbd422c0d8d5b3aade25d262943fdcd79305
 import Askwithai from "./pages/Askwithai";
 import chat from "./pages/chat"
 import { ToastContainer } from "react-toastify";
@@ -18,6 +21,7 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { Context } from "./main";
 import Login from "./pages/Login";
+
 const App = () => {
   const { isAuthenticated, setIsAuthenticated, setUser } = useContext(Context);
 
@@ -38,12 +42,12 @@ const App = () => {
       }
     };
     fetchUser();
-  }, [isAuthenticated]);
+  }, [setIsAuthenticated, setUser]);
 
   return (
     <>
       <Router>
-        <Navbar />
+        <Navbar /> {/* Navbar used here */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/appointment" element={<Appointment />} />
