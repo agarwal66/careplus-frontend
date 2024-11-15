@@ -1,11 +1,12 @@
 import React, { useContext, useEffect } from "react";
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Appointment from "./pages/Appointment";
 import AboutUs from "./pages/AboutUs";
 import Register from "./pages/Register";
 import Footer from "./components/Footer";
+import Navbar from "./components/Navbar"; // Proper Navbar import
 import Askwithai from "./pages/Askwithai";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -35,26 +36,10 @@ const App = () => {
     fetchUser();
   }, [setIsAuthenticated, setUser]);
 
-  const handleLogout = () => {
-    setIsAuthenticated(false);
-    localStorage.removeItem("isAuthenticated"); // Clear persistent login state
-  };
-
   return (
     <>
       <Router>
-        {/* Inline Navbar Definition */}
-        <nav style={{ display: "flex", justifyContent: "space-between", padding: "1rem" }}>
-          <Link to="/">Home</Link>
-          {isAuthenticated ? (
-            <button onClick={handleLogout} style={{ cursor: "pointer" }}>
-              Logout
-            </button>
-          ) : (
-            <Link to="/login">Login</Link>
-          )}
-        </nav>
-
+        <Navbar /> {/* Navbar used here */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/appointment" element={<Appointment />} />
