@@ -1,76 +1,24 @@
-import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { GiHamburgerMenu } from "react-icons/gi";
-import axios from "axios";
-import { toast } from "react-toastify";
-import { Context } from "../main";
+import React, { useContext } from "react";
+import { Context } from "../main"; // Adjust the path to your Context file
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const [show, setShow] = useState(false);
   const { isAuthenticated, setIsAuthenticated } = useContext(Context);
 
-  const handleLogout = async () => {
-    await axios
-      .get(
-        "https://careplus-bakend-production.up.railway.app/api/v1/user/patient/logout",
-        {
-          withCredentials: true,
-        }
-      )
-      .then((res) => {
-        toast.success(res.data.message);
-        setIsAuthenticated(false);
-      })
-      .catch((err) => {
-        toast.error(err.response.data.message);
-      });
-  };
-
-  const navigateTo = useNavigate();
-
-  const goToLogin = () => {
-    navigateTo("/login");
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    localStorage.removeItem("isAuthenticated"); // Clear persistent login state
   };
 
   return (
-    <>
-      <nav className={"container"}>
-        <div className="logo">
-          <img src="/logo2.png" alt="logo" className="logo-img" />
-        </div>
-        <div className={show ? "navLinks showmenu" : "navLinks"}>
-          <div className="links">
-            <Link to={"/"} onClick={() => setShow(!show)}>
-              Home
-            </Link>
-            <Link to={"/appointment"} onClick={() => setShow(!show)}>
-              Appointment
-            </Link>
-            <Link to={"/about"} onClick={() => setShow(!show)}>
-              About Us
-            </Link>
-            <Link to={"/Askwithai"} onClick={() => setShow(!show)}>
-              AI
-            </Link>
-            <li>
-              <a href="http://localhost:5174">Dashboard</a>
-            </li>
-          </div>
-          {isAuthenticated ? (
-            <button className="logoutBtn btn" onClick={handleLogout}>
-              LOGOUT
-            </button>
-          ) : (
-            <button className="loginBtn btn" onClick={goToLogin}>
-              LOGIN
-            </button>
-          )}
-        </div>
-        <div className="hamburger" onClick={() => setShow(!show)}>
-          <GiHamburgerMenu />
-        </div>
-      </nav>
-    </>
+    <nav style={{ display: "flex", justifyContent: "space-between", padding: "1rem" }}>
+      <Link to="/">Home</Link>
+      {isAuthenticated ? (
+        <button onClick={handleLogout} style={{ cursor: "pointer" }}>Logout</button>
+      ) : (
+        <Link to="/login">Login</Link>
+      )}
+    </nav>
   );
 };
 
