@@ -14,6 +14,7 @@ const Aii = () => {
     try {
       console.log("Fetching prompt data...");
       const response = await axios.post(
+        
         `https://gemini-a.onrender.com/generate-text`,
         {
           prompt: prompt,
@@ -31,7 +32,7 @@ const Aii = () => {
 
       // Save prompt and response to your backend
       await axios.post(
-        "https://careplus-bakend-production.up.railway.app/api/v1/ai/save-search-history",
+        "http://localhost:4000/api/v1/ai/save-search-history",
         {
           prompt,
           response: response?.data?.generatedText,

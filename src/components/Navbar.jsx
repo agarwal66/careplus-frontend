@@ -12,7 +12,7 @@ const Navbar = () => {
   const handleLogout = async () => {
     await axios
       .get(
-        "https://careplus-bakend-production.up.railway.app/api/v1/user/patient/logout",
+        "http://localhost:4000/api/v1/user/patient/logout",
         {
           withCredentials: true,
         }

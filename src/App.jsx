@@ -10,7 +10,9 @@ import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 // import Ai from "./pages/Ai"
 // import Aii from "./components/Aii";
+import Chatbot from "./pages/chat";
 import Askwithai from "./pages/Askwithai";
+import chat from "./pages/chat"
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
@@ -23,7 +25,7 @@ const App = () => {
     const fetchUser = async () => {
       try {
         const response = await axios.get(
-          "https://careplus-bakend-production.up.railway.app/api/v1/user/patient/me",
+          "http://localhost:4000/api/v1/user/patient/me",
           {
             withCredentials: true,
           }
@@ -50,7 +52,13 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/Askwithai" element={<Askwithai />} />
         </Routes>
+        {/* <chat /> */}
         <Footer />
+        <div className="chats">
+        <Chatbot/>
+        
+        </div>
+        
         <ToastContainer position="top-center" />
       </Router>
     </>
