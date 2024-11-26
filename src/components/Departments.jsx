@@ -1,4 +1,3 @@
-import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
@@ -66,29 +65,20 @@ const Departments = () => {
   };
 
   return (
-    <>
-      <div className="container departments">
-        <h2>Departments</h2>
-        <Carousel
-          responsive={responsive}
-          removeArrowOnDeviceType={[
-            // "superLargeDesktop",
-            // "desktop",
-            "tablet",
-            "mobile",
-          ]}
-        >
-          {departmentsArray.map((depart, index) => {
-            return (
-              <div key={index} className="card">
-                <div className="depart-name">{depart.name}</div>
-                <img src={depart.imageUrl} alt="Department" />
-              </div>
-            );
-          })}
-        </Carousel>
-      </div>
-    </>
+    <div className="container departments">
+      <h2>Departments</h2>
+      <Carousel
+        responsive={responsive}
+        removeArrowOnDeviceType={["tablet", "mobile"]}
+      >
+        {departmentsArray.map((depart, index) => (
+          <div key={index} className="card">
+            <div className="depart-name">{depart.name}</div>
+            <img src={depart.imageUrl} alt="Department" />
+          </div>
+        ))}
+      </Carousel>
+    </div>
   );
 };
 

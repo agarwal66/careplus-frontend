@@ -1,6 +1,7 @@
-import React from "react";
+// import React from "react";
+import PropTypes from "prop-types";
 
-const Biography = ({imageUrl}) => {
+const Biography = ({ imageUrl }) => {
   return (
     <>
       <div className="container biography">
@@ -35,6 +36,11 @@ const Biography = ({imageUrl}) => {
       </div>
     </>
   );
+};
+
+// Prop validation
+Biography.propTypes = {
+  imageUrl: PropTypes.string.isRequired, // Ensures imageUrl is a required string
 };
 
 export default Biography;

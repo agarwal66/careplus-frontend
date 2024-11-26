@@ -1,22 +1,31 @@
 import React, { createContext, useState } from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.jsx";
 
-export const Context = createContext();
+export const Context = createContext({
+  isAuthenticated: false,
+});
 
-const ContextProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(
-    () => localStorage.getItem("isAuthenticated") === "true"
-  );
-
-  const updateAuthentication = (status) => {
-    setIsAuthenticated(status);
-    localStorage.setItem("isAuthenticated", status.toString());
-  };
+const AppWrapper = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState({});
 
   return (
-    <Context.Provider value={{ isAuthenticated, setIsAuthenticated: updateAuthentication }}>
-      {children}
+    <Context.Provider
+      value={{
+        isAuthenticated,
+        setIsAuthenticated,
+        user,
+        setUser,
+      }}
+    >
+      <App />
     </Context.Provider>
   );
 };
 
-export default ContextProvider;
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <AppWrapper />
+  </React.StrictMode>
+);

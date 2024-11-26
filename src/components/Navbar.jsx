@@ -1,19 +1,19 @@
-import React, { useContext } from "react";
-import { Context } from "../main"; // Adjust the path to your Context file
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react"; // No need for 'React' import anymore
+import { Link, useNavigate } from "react-router-dom";
+import { GiHamburgerMenu } from "react-icons/gi";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { Context } from "../main";
 
 const Navbar = () => {
+  const [show, setShow] = useState(false);
   const { isAuthenticated, setIsAuthenticated } = useContext(Context);
 
-<<<<<<< HEAD
   const handleLogout = async () => {
     await axios
-      .get(
-        "http://localhost:4000/api/v1/user/patient/logout",
-        {
-          withCredentials: true,
-        }
-      )
+      .get("http://localhost:4000/api/v1/user/patient/logout", {
+        withCredentials: true,
+      })
       .then((res) => {
         toast.success(res.data.message);
         setIsAuthenticated(false);
@@ -27,21 +27,44 @@ const Navbar = () => {
 
   const goToLogin = () => {
     navigateTo("/login");
-=======
-  const handleLogout = () => {
-    setIsAuthenticated(false);
-    localStorage.removeItem("isAuthenticated"); // Clear persistent login state
->>>>>>> 3f5acbd422c0d8d5b3aade25d262943fdcd79305
   };
 
   return (
-    <nav style={{ display: "flex", justifyContent: "space-between", padding: "1rem" }}>
-      <Link to="/">Home</Link>
-      {isAuthenticated ? (
-        <button onClick={handleLogout} style={{ cursor: "pointer" }}>Logout</button>
-      ) : (
-        <Link to="/login">Login</Link>
-      )}
+    <nav className={"container"}>
+      <div className="logo">
+        <img src="/logo2.png" alt="logo" className="logo-img" />
+      </div>
+      <div className={show ? "navLinks showmenu" : "navLinks"}>
+        <div className="links">
+          <Link to={"/"} onClick={() => setShow(!show)}>
+            Home
+          </Link>
+          <Link to={"/appointment"} onClick={() => setShow(!show)}>
+            Appointment
+          </Link>
+          <Link to={"/about"} onClick={() => setShow(!show)}>
+            About Us
+          </Link>
+          <Link to={"/Askwithai"} onClick={() => setShow(!show)}>
+            AI
+          </Link>
+        </div>
+        <Link to="/analytics" className="nav-link-button" onClick={() => setShow(!show)}>
+          View Predictions
+        </Link>
+        {isAuthenticated ? (
+          <button className="logoutBtn btn" onClick={handleLogout}>
+            LOGOUT
+          </button>
+        ) : (
+          <button className="loginBtn btn" onClick={goToLogin}>
+            LOGIN
+          </button>
+        )}
+      </div>
+      <div className="hamburger" onClick={() => setShow(!show)}>
+        <GiHamburgerMenu />
+      </div>
     </nav>
   );
 };

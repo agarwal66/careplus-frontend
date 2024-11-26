@@ -755,3 +755,94 @@ footer .logo-img {
   /* left: 0; */
   right: 0;
 }
+.nav-link-button {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 10px;
+  border-radius: 3px;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.nav-link-button:hover {
+  background-color: #218838; /* Darker shade on hover */
+}
+/* Analytics Dashboard CSS */
+
+/* Overall container for the Analytics Dashboard */
+.analytics-dashboard {
+  margin: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading styles */
+.analytics-dashboard h2 {
+  padding-top: 40px;
+  font-size: 2rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Subheading styles */
+.analytics-dashboard h3 {
+  font-size: 1.5rem;
+  color: #555;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Loading message */
+.analytics-dashboard p {
+  font-size: 1.2rem;
+  color: #888;
+  text-align: center;
+}
+
+/* Chart container */
+.chart-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Chart title */
+.chart-container .chart-title {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Center the chart */
+.line-chart {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* Add responsiveness */
+@media (max-width: 768px) {
+  .analytics-dashboard {
+    padding: 15px;
+  }
+
+  .analytics-dashboard h2 {
+    font-size: 1.5rem;
+  }
+
+  .analytics-dashboard h3 {
+    font-size: 1.2rem;
+  }
+
+  .analytics-dashboard p {
+    font-size: 1rem;
+  }
+
+  .chart-container {
+    padding: 10px;
+  }
+}
+

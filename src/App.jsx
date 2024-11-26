@@ -1,27 +1,23 @@
-import React, { useContext, useEffect } from "react";
+import  { useContext, useEffect } from "react";
 import "./App.css";
+// import "./Promptcomponent.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Appointment from "./pages/Appointment";
 import AboutUs from "./pages/AboutUs";
 import Register from "./pages/Register";
 import Footer from "./components/Footer";
-<<<<<<< HEAD
 import Navbar from "./components/Navbar";
 // import Ai from "./pages/Ai"
 // import Aii from "./components/Aii";
-import Chatbot from "./pages/chat";
-=======
-import Navbar from "./components/Navbar"; // Proper Navbar import
->>>>>>> 3f5acbd422c0d8d5b3aade25d262943fdcd79305
 import Askwithai from "./pages/Askwithai";
-import chat from "./pages/chat"
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import AnalyticsDashboard from "./components/AnalyticsDashboard";
 import { Context } from "./main";
 import Login from "./pages/Login";
-
+import Chatbot from "./components/Chatbot";
 const App = () => {
   const { isAuthenticated, setIsAuthenticated, setUser } = useContext(Context);
 
@@ -42,12 +38,12 @@ const App = () => {
       }
     };
     fetchUser();
-  }, [setIsAuthenticated, setUser]);
+  }, [isAuthenticated]);
 
   return (
     <>
       <Router>
-        <Navbar /> {/* Navbar used here */}
+        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/appointment" element={<Appointment />} />
@@ -55,14 +51,10 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/Askwithai" element={<Askwithai />} />
+          <Route path="/analytics" element={<AnalyticsDashboard />} /> 
         </Routes>
-        {/* <chat /> */}
         <Footer />
-        <div className="chats">
         <Chatbot/>
-        
-        </div>
-        
         <ToastContainer position="top-center" />
       </Router>
     </>
@@ -70,3 +62,70 @@ const App = () => {
 };
 
 export default App;
+
+// import React, { useContext, useEffect } from "react";
+// import "./App.css";
+// // import "./Promptcomponent.css";
+// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// import Home from "./pages/Home";
+// import Appointment from "./pages/Appointment";
+// import AboutUs from "./pages/AboutUs";
+// import Register from "./pages/Register";
+// import Footer from "./components/Footer";
+// import Navbar from "./components/Navbar";
+// // import Ai from "./pages/Ai"
+// // import Aii from "./components/Aii";
+// import Askwithai from "./pages/Askwithai";
+// import { ToastContainer } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
+// import axios from "axios";
+// import { Context } from "./main";
+// import Login from "./pages/Login";
+// import AnalyticsDashboard from "./components/AnalyticsDashboard"; // Import the component
+
+// const App = () => {
+//   const { isAuthenticated, setIsAuthenticated, setUser } = useContext(Context);
+
+//   useEffect(() => {
+//     const fetchUser = async () => {
+//       try {
+//         const response = await axios.get(
+//           "http://localhost:4000/api/v1/user/patient/me",
+//           {
+//             withCredentials: true,
+//           }
+//         );
+//         setIsAuthenticated(true);
+//         setUser(response.data.user);
+//       } catch (error) {
+//         setIsAuthenticated(false);
+//         setUser({});
+//       }
+//     };
+//     fetchUser();
+//   }, [isAuthenticated]);
+
+//   return (
+//     <>
+//       <Router>
+//         <Navbar />
+//         <Routes>
+//           <Route path="/" element={<Home />} />
+//           <Route path="/appointment" element={<Appointment />} />
+//           <Route path="/about" element={<AboutUs />} />
+//           <Route path="/register" element={<Register />} />
+//           <Route path="/login" element={<Login />} />
+//           <Route path="/Askwithai" element={<Askwithai />} />
+          
+//           {/* Add the Analytics route */}
+//           <Route path="/analytics" element={<AnalyticsDashboard />} /> 
+          
+//         </Routes>
+//         <Footer />
+//         <ToastContainer position="top-center" />
+//       </Router>
+//     </>
+//   );
+// };
+
+// export default App;
